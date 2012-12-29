@@ -62,8 +62,8 @@ function addWine() {
 		$db       = null;
 		echo json_encode($wine);
 	} catch(PDOException $e) {
-		error_log($e->getMessage(), 3, '/var/tmp/php.log');
-		echo '{"error":{"text":'. $e->getMessage() .'}}';
+		// error_log($e->getMessage(), 3, '/var/tmp/php.log');
+		// echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 }
 
