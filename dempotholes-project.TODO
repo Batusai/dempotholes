@@ -1,0 +1,24 @@
+Home Page and overall app:
+ ☐ Edit the HeaderView template to have jQuery-mobile style buttons, including the "back" button for all non-home pages
+ ☐ Edit the css (and possibly the jQuery-mobile tags) so that the pages align well on mobile devices.
+
+Make Report:
+ ☐ Allow users to register to app so that they can make a report
+ ☐ Allow app to access the user's mobile device camera and geo-locator to take photo and find location of pothole
+ ☐ App should copy taken photos to the app's img folder on the user's device
+ ☐ App should submit the report with photo and location to the server
+
+View Your Map:
+ ☐ Google Map (Map) should display geo-markers of reports made (this is simplified until we can get this working)
+
+Photo Gallery:
+ ☐ Photo Gallery should display all photos submitted by the user. To simplify this the app will only look for photos on the users device to display.
+
+Cool Facts:
+ ✔ Display some facts text @Liana @done (12-12-30 21:49)
+
+Settings:
+ ☐ This area may develop as the app progress
+
+FAQ:
+ ✔ Display some FAQ text @Liana @done (12-12-30 21:51)
