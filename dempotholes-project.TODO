@@ -1,5 +1,6 @@
 Home Page and overall app:
- ☐ Edit the HeaderView template to have jQuery-mobile style buttons, including the "back" button for all non-home pages
+ ✔ Edit the HeaderView template to have jQuery-mobile style buttons, including the "home" button @done (12-12-31 01:39)
+ ☐ In the HeaderView, replace the login link with real link to login page
  ☐ Edit the css (and possibly the jQuery-mobile tags) so that the pages align well on mobile devices.
 
 Make Report:
@@ -9,7 +10,7 @@ Make Report:
  ☐ App should submit the report with photo and location to the server
 
 View Your Map:
- ☐ Google Map (Map) should display geo-markers of reports made (this is simplified until we can get this working)
+ ☐ Google Map (Map) should display geo-markers of reports made (this item is simplified until we can get this working properly)
 
 Photo Gallery:
  ☐ Photo Gallery should display all photos submitted by the user. To simplify this the app will only look for photos on the users device to display.

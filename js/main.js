@@ -7,8 +7,8 @@ var AppRouter = Backbone.Router.extend({
         "wines/add"         : "addWine",
         "wines/:id"         : "wineDetails",
         "about"             : "about",
-		"faqs"				: "faqs",
-		"facts"				: "facts"
+        "faqs"              : "faqs",
+        "facts"	            : "facts"
     },
 
     initialize: function () {
@@ -21,32 +21,28 @@ var AppRouter = Backbone.Router.extend({
             this.homeView = new HomeView();
         }
         $('#content').html(this.homeView.el);
-        this.headerView.selectMenuItem('home-menu');
     },
-	
-	 facts: function () {
+
+	facts: function () {
         if (!this.factView) {
             this.factView = new FactView();
         }
         $('#content').html(this.factView.el);
-        this.headerView.selectMenuItem('home-menu');
     },
-	
+
 	faqs: function () {
         if (!this.faqView) {
             this.faqView = new FaqView();
         }
         $('#content').html(this.faqView.el);
-        this.headerView.selectMenuItem('home-menu');
     },
-	
+
     list: function(page) {
         var p = page ? parseInt(page, 10) : 1;
         var wineList = new WineCollection();
         wineList.fetch({success: function(){
             $("#content").html(new WineListView({model: wineList, page: p}).el);
         }});
-        this.headerView.selectMenuItem('home-menu');
     },
 
     wineDetails: function (id) {
@@ -54,13 +50,11 @@ var AppRouter = Backbone.Router.extend({
         wine.fetch({success: function(){
             $("#content").html(new WineView({model: wine}).el);
         }});
-        this.headerView.selectMenuItem();
     },
 
     addWine: function() {
         var wine = new Wine();
         $('#content').html(new WineView({model: wine}).el);
-        this.headerView.selectMenuItem('add-menu');
     },
 
     about: function () {
@@ -68,7 +62,6 @@ var AppRouter = Backbone.Router.extend({
             this.aboutView = new AboutView();
         }
         $('#content').html(this.aboutView.el);
-        this.headerView.selectMenuItem('about-menu');
     }
 
 });

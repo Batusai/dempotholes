@@ -8,4 +8,10 @@ $(document).bind("mobileinit", function () {
     $('div[data-role="page"]').live('pagehide', function (event, ui) {
         $(event.currentTarget).remove();
     });
+
+    // Page loading widget
+    $.mobile.loader.prototype.options.text = "huhhh. Dem Potholes!";
+    $.mobile.loader.prototype.options.textVisible = true;
+    $.mobile.loader.prototype.options.theme = "c";
+    $.mobile.loader.prototype.options.html = "";
 });
