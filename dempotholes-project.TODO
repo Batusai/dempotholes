@@ -2,7 +2,7 @@ Home Page and overall app:
  ✔ Edit the HeaderView template to have jQuery-mobile style buttons, including the "home" button @done (12-12-31 01:39)
  ☐ In the HeaderView, replace the login link with real link to login page
  ☐ Edit the css (and possibly the jQuery-mobile tags) so that the pages align well on mobile devices.
- ☐ Solve why browser caching makes it so that jQuery-mobile don't always render as it should
+ ✔ Solve why browser caching makes it so that jQuery-mobile don't always render as it should @done (13-01-01 09:11)
 
 Make Report:
  ☐ Allow users to register to app so that they can make a report
