@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Backbone.GoogleMaps</title>
+		
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+
+      .overlay {
+          position:fixed;
+          background:rgba(255, 255, 255, 0.95);
+          border:1px solid #aaa;
+          padding:20px;
+          z-index:5;
+      }
+
+      #search-area {
+          right:40px;
+          top:40px;
+      }
+
+
+      button {
+          background:#006;
+          color:#fff;
+          font-weight:bold;
+          border:1px solid rgba(0,0,0,.85);
+          font-size:14px;
+          padding:10px 15px;
+          outline:none;
+      }
+    </style>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    <!-- Point the following scripts to the relevant js library for your app -->
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>
+
+    <!-- End of scripts -->
+</head>
+
+<body>
+
+    <!-- TEMPLATE: InfoWindow
+     ============================== -->
+    <script id="infoWindow-template" type="text/html">
+        <h2><%=title %></h2>
+        <p>Latitude: <%=lat %></p>
+        <p>Longitude: <%=lng %></p>
+    </script>
+
+
+    <div id="search-area" class="overlay">
+        <button id="all"> All </button>
+		<button id="recent"> Recent </button>
+		<button id="repair"> Repaired </button>
+    </div>
+
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+
+    <script type="text/javascript">
+    /**
+     * Example App
+    */
+
+
+    var App = {};
+	
+	App.pothole = Backbone.Model.extend({
+		defaults{
+			map: this.map
+			},
+		lat: 0, 
+		lng: 0, 
+		title: ""
+	
+	});
+	
+	var holes = [
+		{
+			title: "POS",
+			lat: 10.4767,
+			lng: -61.478
+		},
+		{
+			title: "Sando",
+			lat: 10.4967,
+			lng: -61.5788
+		},
+		{
+			title: "Central",
+			lat: 10.5989,
+			lng: -61.4324
+		}
+	];
+		
+	
+	App.Potholes = Backbone.Collection.extend({
+		model: pothole
+	});
+
+    App.init = function() {
+        this.createMap();
+    }
+
+    App.createMap = function() {
+        var mapOptions = {
+            center: new google.maps.LatLng(10.459453, -61.259972),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        // Instantiate map
+        this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+    
+	var marker2 = new google.maps.Marker({
+		map: this.map, 
+		position: new google.maps.LatLng(10.4768765, -61.365369 ),
+		title: "Town"
+	});
+	
+	};
+
+
+    $(document).ready(function() {
+        App.init();
+
+    });
+
+
+    </script>
+</body>
+
+</html>
