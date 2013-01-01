@@ -67,54 +67,72 @@
 
 
     <div id="search-area" class="overlay">
-        <button id="museums">find museums</button>
+        <button id="allHoles"> All </button>
+        <button id="recent"> Recent </button>
+        <button id="repair"> Repaired </button>
+        <!-- <button id="museums">find museums</button>
         <button id="bars">find bars</button>
         <button id="addBtn">add</button>
-        <button id="removeBtn">remove</button>
+        <button id="removeBtn">remove</button> -->
     </div>
 
     <div id="map_canvas" style="width:100%; height:100%"></div>
 
     <script type="text/javascript">
-    /**
-     * Example App
-    */
 
-    // Sample Data
-    var museums = [
+    var allHoles = [
         {
-            title: "Walker Art Center",
-            lat: 44.9796635,
-            lng: -93.2748776
+            title: "POS",
+            lat: 10.4767,
+            lng: -61.478
         },
         {
-            title: "Science Museum of Minnesota",
-            lat: 44.9429618,
-            lng: -93.0981016
+            title: "Sando",
+            lat: 10.4967,
+            lng: -61.5788
         },
         {
-            title: "The Museum of Russian Art",
-            lat: 44.9036337,
-            lng: -93.2755413
+            title: "Central",
+            lat: 10.5989,
+            lng: -61.4324
         }
     ];
-    var bars = [
-        {
-            title: "Park Tavern",
-            lat: 44.9413272,
-            lng: -93.3705791,
-        },
-        {
-            title: "Chatterbox Pub",
-            lat: 44.9393882,
-            lng: -93.2391039
-        },
-        {
-            title: "Acadia Cafe",
-            lat: 44.9709853,
-            lng: -93.2470717
-        }
-    ];
+
+    // ---------- Data ------------
+    // var museums = [
+    //     {
+    //         title: "Walker Art Center",
+    //         lat: 44.9796635,
+    //         lng: -93.2748776
+    //     },
+    //     {
+    //         title: "Science Museum of Minnesota",
+    //         lat: 44.9429618,
+    //         lng: -93.0981016
+    //     },
+    //     {
+    //         title: "The Museum of Russian Art",
+    //         lat: 44.9036337,
+    //         lng: -93.2755413
+    //     }
+    // ];
+    // var bars = [
+    //     {
+    //         title: "Park Tavern",
+    //         lat: 44.9413272,
+    //         lng: -93.3705791,
+    //     },
+    //     {
+    //         title: "Chatterbox Pub",
+    //         lat: 44.9393882,
+    //         lng: -93.2391039
+    //     },
+    //     {
+    //         title: "Acadia Cafe",
+    //         lat: 44.9709853,
+    //         lng: -93.2470717
+    //     }
+    // ];
 
     var App = {};
 
@@ -122,8 +140,8 @@
     App.Location = Backbone.GoogleMaps.Location.extend({
         idAttribute: 'title',
         defaults: {
-            lat: 45,
-            lng: -93
+            lat: 10.5,
+            lng: -61
         }
     });
 
@@ -188,8 +206,8 @@
 
     App.createMap = function() {
         var mapOptions = {
-            center: new google.maps.LatLng(44.9796635, -93.2748776),
-            zoom: 12,
+            center: new google.maps.LatLng(10.4768765, -61.365369),
+            zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
@@ -269,25 +287,39 @@
     $(document).ready(function() {
         App.init();
 
-        $('#bars').click(function() {
-            App.places.reset(bars);
+        $('#allHoles').click(function() {
+            App.places.reset(allHoles);
         });
 
-        $('#museums').click(function() {
-            App.places.reset(museums);
+        $('#recent').click(function() {
+            App.places.reset(recent);
         });
 
-        $('#addBtn').click(function() {
-            App.places.add({
-                title: 'State Capitol Building',
-                lat: 44.9543075,
-                lng: -93.102222
-            });
+        $('#repair').click(function() {
+            App.places.reset(repair);
         });
 
-        $('#removeBtn').click(function() {
-            App.places.remove(App.places.at(0));
-        });
+        // ----- app functions -------
+
+        // $('#bars').click(function() {
+        //     App.places.reset(bars);
+        // });
+
+        // $('#museums').click(function() {
+        //     App.places.reset(museums);
+        // });
+
+        // $('#addBtn').click(function() {
+        //     App.places.add({
+        //         title: 'State Capitol Building',
+        //         lat: 44.9543075,
+        //         lng: -93.102222
+        //     });
+        // });
+
+        // $('#removeBtn').click(function() {
+        //     App.places.remove(App.places.at(0));
+        // });
     });
 
 

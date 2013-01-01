@@ -37,7 +37,7 @@ var AppRouter = Backbone.Router.extend({
         $('#content').html(this.faqView.el);
     },
 
-    list: function(page) {
+    list: function (page) {
         var p = page ? parseInt(page, 10) : 1;
         var wineList = new WineCollection();
         wineList.fetch({success: function(){
@@ -52,7 +52,7 @@ var AppRouter = Backbone.Router.extend({
         }});
     },
 
-    addWine: function() {
+    addWine: function () {
         var wine = new Wine();
         $('#content').html(new WineView({model: wine}).el);
     },

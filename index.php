@@ -5,13 +5,14 @@
     <title>Dem Potholes</title>
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
 
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
     </style>
-    <link href="css/jquery.mobile-1.2.0/jquery.mobile-1.2.0.css" rel="stylesheet">
+    <link href="css/jquery.mobile-1.2.0/jquery.mobile-1.2.0.css<?php echo "?" . date('YmdHis'); ?>" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -22,17 +23,17 @@
 <body>
 
 <div class="header"></div>
-<div class="row-fluid">
         <div id="content"></div>
-    </div>
+<!-- <div class="row-fluid">
+    </div> -->
 
     <footer class="footer">
         <h4>&COPY;2012 Dem Potholes v 1.0</h4>
     </footer>
-<div class="container">
+<!-- <div class="container">
 
 
-</div>
+</div> -->
 <!-- ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="lib/jquery-1.8.2.min.js"></script>
