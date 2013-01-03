@@ -188,7 +188,7 @@
     App.init = function() {
         this.createMap();
 
-        this.places = new this.LocationCollection(museums);
+        this.places = new this.LocationCollection(allHoles);
 
         // Render Markers
         var markerCollectionView = new this.MarkerCollectionView({

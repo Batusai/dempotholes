@@ -7,4 +7,5 @@ The application is provided with a RESTful back-end implemented in PHP (see the 
 2. Execute <new database goes here>.sql to create and populate the "<replace this>" table:
 
 	mysql <new database goes here> -uroot < <new database goes here>.sql
->>>>>>> Linked map.html to the "View Your Map" button
+
+Linked map.html to the "View Your Map" button
