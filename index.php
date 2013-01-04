@@ -52,6 +52,7 @@
 <script src="js/views/home.js"></script>
 <script src="js/views/faq.js"></script>
 <script src="js/views/fact.js"></script>
+<script src="js/views/gallery.js"></script>
 <script src="js/views/winelist.js"></script>
 <script src="js/views/winedetails.js"></script>
 <script src="js/views/about.js"></script>

@@ -8,7 +8,8 @@ var AppRouter = Backbone.Router.extend({
         "wines/:id"         : "wineDetails",
         "about"             : "about",
         "faqs"              : "faqs",
-        "facts"	            : "facts"
+        "facts"	            : "facts",
+        "gallery"           : "gallery"
     },
 
     initialize: function () {
@@ -35,6 +36,13 @@ var AppRouter = Backbone.Router.extend({
             this.faqView = new FaqView();
         }
         $('#content').html(this.faqView.el);
+    },
+
+    gallery: function () {
+        if (!this.galleryView) {
+            this.galleryView = new GalleryView();
+        }
+        $('#content').html(this.galleryView.el);
     },
 
     list: function (page) {
@@ -66,7 +74,7 @@ var AppRouter = Backbone.Router.extend({
 
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'WineView', 'WineListItemView', 'AboutView', 'FaqView', 'FactView'], function() {
+utils.loadTemplate(['HomeView', 'HeaderView', 'WineView', 'WineListItemView', 'AboutView', 'FaqView', 'FactView', 'GalleryView'], function() {
     app = new AppRouter();
     Backbone.history.stop();
     Backbone.history.start();
