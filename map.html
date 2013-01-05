@@ -211,6 +211,12 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
+        var holes = [
+                 ['North', 10.670542, -61.364856, 1],
+                 ['Central', 10.573036, -61.369052, 2],
+                 ['South', 10.278249, -61.367507, 3]
+               ];
+
         // Instantiate map
         map = new google.maps.Map($('#map_canvas')[0], mapOptions);
 
