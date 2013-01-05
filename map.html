@@ -212,6 +212,7 @@
         }
 
         // Instantiate map
+<<<<<<< HEAD
         map = new google.maps.Map($('#map_canvas')[0], mapOptions);
 
 		var infowindow = new google.maps.InfoWindow();
@@ -236,6 +237,20 @@
 
 
 	};
+=======
+        this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+
+		var marker = new google.maps.Marker({
+			map: this.map,
+			position: new google.maps.LatLng(10.4768765, -61.365369 ),
+			title: "Town"
+		});
+
+		map.addOverlay(marker);
+		GEvent.addListener(marker, "click", function()
+		{marker.openInfoWindowHtml('here I am');});
+    }
+>>>>>>> no change
 
 
     /**
