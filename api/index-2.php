@@ -4,31 +4,31 @@ require 'Slim/Slim.php';
 
 $app = new Slim();
 
-$app->get('/incidents', 'getIncident');
-$app->get('/incidents/:id',	'getIncident');
-/* $app->get('/incidents/search/:query', 'findByName'); */
-$app->post('/incidents', 'saveInci');
-$app->put('/incidents/:id', 'updateIncident');
-//$app->delete('/wines/:id',	'deleteWine');
+$app->get('/wines', 'getWines');
+$app->get('/wines/:id',	'getWine');
+$app->get('/wines/search/:query', 'findByName');
+$app->post('/wines', 'addWine');
+$app->put('/wines/:id', 'updateWine');
+$app->delete('/wines/:id',	'deleteWine');
 
 $app->run();
 
-function getIncident() {
-	$sql = "select * FROM incident ORDER BY name";
+function getWines() {
+	$sql = "select * FROM wine ORDER BY name";
 	try {
 		$db    = getConnection();
 		$stmt  = $db->query($sql);
 		$wines = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db    = null;
 		// echo '{"wine": ' . json_encode($wines) . '}';
-		echo json_encode($incidents);
+		echo json_encode($wines);
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 }
 
-function getIncident($id) {
-	$sql = "SELECT * FROM incident WHERE id=:id";
+function getWine($id) {
+	$sql = "SELECT * FROM wine WHERE id=:id";
 	try {
 		$db   = getConnection();
 		$stmt = $db->prepare($sql);
@@ -36,60 +36,62 @@ function getIncident($id) {
 		$stmt->execute();
 		$wine = $stmt->fetchObject();
 		$db   = null;
-		echo json_encode($incident);
+		echo json_encode($wine);
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 }
 
-function saveInci() {
-	error_log('saveInci\n', 3, '/var/tmp/php.log');
+function addWine() {
+	error_log('addWine\n', 3, '/var/tmp/php.log');
 	$request = Slim::getInstance()->request();
-	$incident    = json_decode($request->getBody());
-	$sql     = "INSERT INTO incident (name, addr, direction, type, notes, picture) VALUES (:name, :addr, :direction, :type, :notes, :picture)";
+	$wine    = json_decode($request->getBody());
+	$sql     = "INSERT INTO wine (name, grapes, country, region, year, description, picture) VALUES (:name, :grapes, :country, :region, :year, :description, :picture)";
 	try {
 		$db   = getConnection();
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam("name", $incident->name);
-		$stmt->bindParam("addr", $incident->addr);
-		$stmt->bindParam("direction", $incident->direction);
-		$stmt->bindParam("type", $incident->type);
-		$stmt->bindParam("notes", $incident->notes);
-		$stmt->bindParam("picture", $incident->picture);
+		$stmt->bindParam("name", $wine->name);
+		$stmt->bindParam("grapes", $wine->grapes);
+		$stmt->bindParam("country", $wine->country);
+		$stmt->bindParam("region", $wine->region);
+		$stmt->bindParam("year", $wine->year);
+		$stmt->bindParam("description", $wine->description);
+		$stmt->bindParam("picture", $wine->picture);
 		$stmt->execute();
-		$incident->id = $db->lastInsertId();
+		$wine->id = $db->lastInsertId();
 		$db       = null;
-		echo json_encode($incident);
+		echo json_encode($wine);
 	} catch(PDOException $e) {
 		// error_log($e->getMessage(), 3, '/var/tmp/php.log');
 		// echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 }
 
-function updateIncident($id) {
+function updateWine($id) {
 	$request = Slim::getInstance()->request();
 	$body    = $request->getBody();
-	$incident    = json_decode($body);
-	$sql     = "UPDATE incident SET name=:name, addr=:addr, type=:type, notes=:notes, picture=:picture WHERE id=:id";
+	$wine    = json_decode($body);
+	$sql     = "UPDATE wine SET name=:name, grapes=:grapes, country=:country, region=:region, year=:year, description=:description, picture=:picture WHERE id=:id";
 	try {
 		$db   = getConnection();
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam("name", $incident->name);
-		$stmt->bindParam("addr", $incident->addr);
-		$stmt->bindParam("direction", $incident->direction);
-		$stmt->bindParam("type", $incident->type);
-		$stmt->bindParam("notes", $incident->notes);
-		$stmt->bindParam("picture", $incident->picture);
+		$stmt->bindParam("name", $wine->name);
+		$stmt->bindParam("grapes", $wine->grapes);
+		$stmt->bindParam("country", $wine->country);
+		$stmt->bindParam("region", $wine->region);
+		$stmt->bindParam("year", $wine->year);
+		$stmt->bindParam("description", $wine->description);
+		$stmt->bindParam("picture", $wine->picture);
 		$stmt->bindParam("id", $id);
 		$stmt->execute();
 		$db   = null;
-		echo json_encode($incident);
+		echo json_encode($wine);
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 }
 
-/* function deleteIncident($id) {
+function deleteWine($id) {
 	$sql = "DELETE FROM wine WHERE id=:id";
 	try {
 		$db   = getConnection();
@@ -116,13 +118,13 @@ function findByName($query) {
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
-} */
+}
 
 function getConnection() {
 	$dbhost ="127.0.0.1";
 	$dbuser ="root";
 	$dbpass ="";
-	$dbname ="reports";
+	$dbname ="cellar";
 	$dbh    = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	return $dbh;

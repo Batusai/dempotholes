@@ -1,0 +1,81 @@
+<div class="row">
+
+	
+	<form class="form-horizontal span12">
+		<legend>Make Report</legend>
+		<br/>
+		
+        <fieldset>
+			<div class="row">
+               <div class="span9">
+
+                    <div class="control-group">
+                        <label for="name" class="control-label">Name:</label>
+                        <div class="controls">
+							<input class="input-large" type="text" id="name" name="name" placeholder="Enter your name">
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="grapes" class="control-label">Incident Address:</label>
+                        <div class="controls">
+                            <input class="input-large" type="text" id="addr" name="addr" placeholder="Enter the address of the incident">
+							<span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="country" class="control-label">Directions to Incident:</label>
+                        <div class="controls">
+                            <input class="input-large" type="text" id="direction" name="direction" placeholder="Direct us to the incident">
+							<span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="region" class="control-label">Incident Type:</label>
+                        <div class="controls">
+							<select class="input-large" id="type" name="type">
+                                <option>Pothole</option>
+                                <option>Traffic Light</option>
+								<option>Bridge</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="description" class="control-label">Additional Notes:</label>
+                        <div class="controls">
+							<textarea class="input-large" rows = "6" type="text" id="notes" name="notes" placeholder="Enter additional information"></textarea>
+                        </div>
+                    </div>
+					
+					<div class="span3">
+                    <div class="well">
+                        <p><img id="picture" width="180"</p>
+
+                        <p>To change the picture, drag a new picture from your file system onto the box above.</p>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+        </fieldset>
+		
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn" onclick="this.form.reset()">Clear</button>
+        </div>
+		
+    </form>
+</div>
+
+<!--<div class="row status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none">
+            <b>Success!</b> Wine saved successfully
+        </div>
+    </div>
+</div>-->
