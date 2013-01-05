@@ -36,6 +36,7 @@
 </div> -->
 <!-- ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script src="lib/jquery-1.8.2.min.js"></script>
 <script src="js/jq-config.js"></script>
 <script src="js/jqm-config.js"></script>
