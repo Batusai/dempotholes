@@ -212,6 +212,7 @@
         }
 
         // Instantiate map
+<<<<<<< HEAD
         this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
 
 		var marker = new google.maps.Marker({
@@ -224,6 +225,32 @@
 		GEvent.addListener(marker, "click", function()
 		{marker.openInfoWindowHtml('here I am');});
     }
+=======
+        map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+		
+		var infowindow = new google.maps.InfoWindow();
+		
+		var marker, i;
+		
+		for (i = 0; i < holes.length; i++) {  
+		  marker = new google.maps.Marker({
+			position: new google.maps.LatLng(holes[i][1], holes[i][2]),
+			map: map
+		  });
+		 
+		google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+			return function() {
+			  infowindow.setContent(holes[i][0]);
+			  infowindow.open(map, marker);
+			}
+		})(marker, i));
+		
+			
+		};
+		
+	
+	};
+>>>>>>> parent of 94d8591... no change
 
 
     /**
