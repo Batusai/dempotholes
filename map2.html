@@ -67,7 +67,7 @@
 
 
     <div id="search-area" class="overlay">
-        <button id="allHoles"> All </button>
+        <button id="add"> Add Marker </button>
         <button id="recent"> Recent </button>
         <button id="repair"> Repaired </button>
         <!-- <button id="museums">find museums</button>
@@ -87,15 +87,9 @@
 		];
 
     var App = {};
-	
-	App.Hole = Backbone.Model.extend({});
-	
-	App.Holes = Backbone.Collection.extend({
-		model: Hole, 
-		localStorage: new Store("Potholes-backbone")
-	};
 
-    App.init = function() {
+
+    App.init = function(){
         this.createMap();
     };
 
@@ -132,27 +126,35 @@
 			
 		};
 		
-	};
 	
-	App.addMarker = function(lat, lng, content){
-		var infowindow2 = new google.maps.InfoWindow();
-		var marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(lat, lng),
-			map: map
+	
+	App.addMarker = function(){
+		//var infowindow2 = new google.maps.InfoWindow();
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(10.32453, -61.425435),
+			map: this.map,
 		});
 		  
-		google.maps.event.addListener(marker2, 'mouseover', function(){
+		/*google.maps.event.addListener(marker2, 'mouseover', function(){
 			infowindow2.setContent(content);
 			infowindow2.open(map, marker2);
-		});
+		});*/
+		//map.setCenter(marker.getPosition());
 	};
 			
 	
-	}
+	};
 
 
     $(document).ready(function() {
         App.init();
+		$('#add').click(function() {
+			//var lat = prompt("Enter latitude");
+			//var lng = prompt("Enter longitude");
+			//var content = prompt("Enter content");
+            this.addMarker();
+        });
+		
     });
 
 
