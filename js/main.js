@@ -21,11 +21,10 @@ var AppRouter = Backbone.Router.extend({
     },
 
     report: function (id) {
-        var rep = new Incident({_id: id});
-        incident.fetch({success: function(){
-            $("#content").html(new MRView({model: incident}).el);
-        }});
-        //this.headerView.selectMenuItem();
+        if (!this.reportView) {
+            this.reportView = new MRView();
+        }
+        $('#content').html(this.reportView.el);
     },
 
     saveIncident: function () {
