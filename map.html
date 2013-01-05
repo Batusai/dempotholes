@@ -79,64 +79,21 @@
     <div id="map_canvas" style="width:100%; height:100%"></div>
 
     <script type="text/javascript">
-
-    var allHoles = [
-        {
-            title: "POS",
-            lat: 10.4767,
-            lng: -61.478
-        },
-        {
-            title: "Sando",
-            lat: 10.4967,
-            lng: -61.5788
-        },
-        {
-            title: "Central",
-            lat: 10.5989,
-            lng: -61.4324
-        }
-    ];
-
-    // ---------- Data ------------
-    // var museums = [
-    //     {
-    //         title: "Walker Art Center",
-    //         lat: 44.9796635,
-    //         lng: -93.2748776
-    //     },
-    //     {
-    //         title: "Science Museum of Minnesota",
-    //         lat: 44.9429618,
-    //         lng: -93.0981016
-    //     },
-    //     {
-    //         title: "The Museum of Russian Art",
-    //         lat: 44.9036337,
-    //         lng: -93.2755413
-    //     }
-    // ];
-    // var bars = [
-    //     {
-    //         title: "Park Tavern",
-    //         lat: 44.9413272,
-    //         lng: -93.3705791,
-    //     },
-    //     {
-    //         title: "Chatterbox Pub",
-    //         lat: 44.9393882,
-    //         lng: -93.2391039
-    //     },
-    //     {
-    //         title: "Acadia Cafe",
-    //         lat: 44.9709853,
-    //         lng: -93.2470717
-    //     }
-    // ];
+    
 
     var App = {};
+	
+	var holes = [
+		[10.4767, -61.4782],
+		[10.4967, -61.5788],
+		[10.5989, -61.4324]
+		];
+	var map;
 
+	var infowindow = [];
+	var marker = [];
 
+	/*
     App.Location = Backbone.GoogleMaps.Location.extend({
         idAttribute: 'title',
         defaults: {
@@ -184,10 +141,11 @@
     App.MarkerCollectionView = Backbone.GoogleMaps.MarkerCollectionView.extend({
         markerView: App.MarkerView
     });
+	*/
 
     App.init = function() {
         this.createMap();
-
+		/*
         this.places = new this.LocationCollection(allHoles);
 
         // Render Markers
@@ -202,33 +160,44 @@
             collection: this.places
         });
         listView.render();
-    }
+		*/
+    };
 
     App.createMap = function() {
+	
+		var mylatlng = new google.maps.LatLng(10.4768765, -61.365369 ); 
+		
         var mapOptions = {
-            center: new google.maps.LatLng(10.4768765, -61.365369),
+            center: mylatlng,
             zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
+        }; 
 
         // Instantiate map
         this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
 		
-		var marker = new google.maps.Marker({
-			map: this.map, 
-			position: new google.maps.LatLng(10.4768765, -61.365369 ),
-			title: "Town"
+		var infowindow = new google.maps.InfoWindow({
+			content: 'RAWR'
 		});
 		
-		map.addOverlay(marker);
-		GEvent.addListener(marker, "click", function()
-		{marker.openInfoWindowHtml('here I am');});
-    }
+		var marker = new google.maps.Marker({
+			position: mylatlng, 
+			map: this.map, 
+			title: 'Town'
+		});
+		
+		google.maps.event.addListener(marker, 'click', function(){
+			infowindow.open(this.map, marker);
+		});
+    };
+	
+	
 
 
     /**
      * List view
     */
+	/*
     App.ItemView = Backbone.View.extend({
         template: '<%=title %>',
         tagName: 'li',
@@ -292,11 +261,12 @@
             this.render();
         }
     });
-
+	*/
 
     $(document).ready(function() {
         App.init();
-
+		
+		/*
         $('#allHoles').click(function() {
             App.places.reset(allHoles);
         });
@@ -308,7 +278,7 @@
         $('#repair').click(function() {
             App.places.reset(repair);
         });
-
+		*/
         // ----- app functions -------
 
         // $('#bars').click(function() {
