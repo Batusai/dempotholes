@@ -72,7 +72,8 @@
 		  ['Central', 10.573036, -61.369052, 2],
 		  ['South', 10.278249, -61.367507, 3]
 		];
-
+	
+	
     var App = {};
 
 	var map; 
@@ -94,11 +95,24 @@
 
         // Instantiate map
         map = new google.maps.Map($('#map_canvas')[0], mapOptions);
-		
-		
-			
+		/*
+		google.maps.event.addListener(map, 'click', function(event) {
+			this.placeMarker(event.latLng);
+		  });
+		*/	
 		};
-		
+	/*	
+	App.placeMarker = function(location) {
+	  var marker = new google.maps.Marker({
+		position: location,
+		map: map,
+	  });
+	  var infowindow = new google.maps.InfoWindow({
+		content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+	  });
+	  infowindow.open(map,marker);
+	};
+	*/	
 	App.processHoles = function(){
 		var infowindow = new google.maps.InfoWindow();
 		
@@ -116,34 +130,12 @@
 			  infowindow.open(map, marker);
 			}
 		})(marker, i));
-	}	
+	};	
 		
-	
+	};
 	
 	App.addMarker = function(lat, lng, content){
 		var infowindow = new google.maps.InfoWindow();
-		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(lat, lng),
-			map: map,
-		});
-		  
-		google.maps.event.addListener(marker, 'mouseover', function(){
-			infowindow.setContent(content);
-			infowindow.open(map, marker);
-		});
-	};
-			
-	
-	};
-
-
-    $(document).ready(function() {
-        App.init();
-		$('#add').click(function() {
-			var lat = prompt("Enter latitude");
-			var lng = prompt("Enter longitude");
-			var content = prompt("Enter content");
-			var infowindow = new google.maps.InfoWindow();
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(lat, lng),
 				map: map,
@@ -153,8 +145,18 @@
 				infowindow.setContent(content);
 				infowindow.open(map, marker);
 			});
+	};
+
+    $(document).ready(function() {
+        App.init();
+
+		$('#add').click(function() {
+			var lat = prompt("Enter latitude");
+			var lng = prompt("Enter longitude");
+			var content = prompt("Enter content");
+			this.addMarker(lat, lng, content);
+			
         });
-		
     });
 
 
