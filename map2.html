@@ -87,75 +87,16 @@
 		];
 
     var App = {};
-
-	/*
-    App.Location = Backbone.GoogleMaps.Location.extend({
-        idAttribute: 'title',
-        defaults: {
-            lat: 10.5,
-            lng: -61
-        }
-    });
-
-    App.LocationCollection = Backbone.GoogleMaps.LocationCollection.extend({
-        model: App.Location
-    });
-
-    App.InfoWindow = Backbone.GoogleMaps.InfoWindow.extend({
-        template: '#infoWindow-template',
-
-        events: {
-            'mouseenter h2': 'logTest'
-        },
-
-        logTest: function() {
-            console.log('test in InfoWindow');
-        }
-    });
-
-    App.MarkerView = Backbone.GoogleMaps.MarkerView.extend({
-        infoWindow: App.InfoWindow,
-
-        overlayOptions: {
-            draggable: true
-        },
-
-        initialize: function() {
-            _.bindAll(this, 'handleDragEnd');
-        },
-
-        mapEvents: {
-            'dragend'   : 'handleDragEnd'
-        },
-
-        handleDragEnd: function(e) {
-            alert('Dropped at: \n Lat: ' + e.latLng.lat() + '\n lng: ' + e.latLng.lng());
-        }
-    });
-
-    App.MarkerCollectionView = Backbone.GoogleMaps.MarkerCollectionView.extend({
-        markerView: App.MarkerView
-    });
-	*/
+	
+	App.Hole = Backbone.Model.extend({});
+	
+	App.Holes = Backbone.Collection.extend({
+		model: Hole, 
+		localStorage: new Store("Potholes-backbone")
+	};
 
     App.init = function() {
         this.createMap();
-		/*
-        this.places = new this.LocationCollection(allHoles);
-
-        // Render Markers
-        var markerCollectionView = new this.MarkerCollectionView({
-            collection: this.places,
-            map: this.map
-        });
-        markerCollectionView.render();
-
-        // Render ListView
-        var listView = new App.ListView({
-            collection: this.places
-        });
-        listView.render();
-		*/
     };
 
     App.createMap = function() {
@@ -191,116 +132,27 @@
 			
 		};
 		
-	
 	};
+	
+	App.addMarker = function(lat, lng, content){
+		var infowindow2 = new google.maps.InfoWindow();
+		var marker2 = new google.maps.Marker({
+			position: new google.maps.LatLng(lat, lng),
+			map: map
+		});
+		  
+		google.maps.event.addListener(marker2, 'mouseover', function(){
+			infowindow2.setContent(content);
+			infowindow2.open(map, marker2);
+		});
+	};
+			
+	
+	}
 
-
-    /**
-     * List view
-    */
-	/*
-    App.ItemView = Backbone.View.extend({
-        template: '<%=title %>',
-        tagName: 'li',
-
-        events: {
-            'mouseenter':   'selectItem',
-            'mouseleave':   'deselectItem'
-        },
-
-        initialize: function() {
-            _.bindAll(this, 'render', 'selectItem', 'deselectItem')
-
-            this.model.on("remove", this.close, this);
-        },
-
-        render: function() {
-            var html = _.template(this.template, this.model.toJSON());
-            this.$el.html(html);
-
-            return this;
-        },
-
-        close: function() {
-            this.$el.remove();
-        },
-
-        selectItem: function() {
-            this.model.select();
-        },
-
-        deselectItem: function() {
-            this.model.deselect();
-        }
-    });
-
-    App.ListView = Backbone.View.extend({
-        tagName: 'ul',
-        className: 'overlay',
-        id: 'listing',
-
-        initialize: function() {
-            _.bindAll(this, "refresh", "addChild");
-
-            this.collection.on("reset", this.refresh, this);
-            this.collection.on("add", this.addChild, this);
-
-            this.$el.appendTo('body');
-        },
-
-        render: function() {
-            this.collection.each(this.addChild);
-        },
-
-        addChild: function(childModel) {
-            var childView = new App.ItemView({ model: childModel });
-            childView.render().$el.appendTo(this.$el);
-        },
-
-        refresh: function() {
-            this.$el.empty();
-            this.render();
-        }
-    });
-	*/
 
     $(document).ready(function() {
         App.init();
-		
-		/*
-        $('#allHoles').click(function() {
-            App.places.reset(allHoles);
-        });
-
-        $('#recent').click(function() {
-            App.places.reset(recent);
-        });
-
-        $('#repair').click(function() {
-            App.places.reset(repair);
-        });
-		*/
-        // ----- app functions -------
-
-        // $('#bars').click(function() {
-        //     App.places.reset(bars);
-        // });
-
-        // $('#museums').click(function() {
-        //     App.places.reset(museums);
-        // });
-
-        // $('#addBtn').click(function() {
-        //     App.places.add({
-        //         title: 'State Capitol Building',
-        //         lat: 44.9543075,
-        //         lng: -93.102222
-        //     });
-        // });
-
-        // $('#removeBtn').click(function() {
-        //     App.places.remove(App.places.at(0));
-        // });
     });
 
 
