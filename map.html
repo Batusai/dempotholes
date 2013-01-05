@@ -80,18 +80,13 @@
 
     <script type="text/javascript">
     
+	var holes = [
+		  ['North', 10.670542, -61.364856, 1],
+		  ['Central', 10.573036, -61.369052, 2],
+		  ['South', 10.278249, -61.367507, 3]
+		];
 
     var App = {};
-	
-	var holes = [
-		[10.4767, -61.4782],
-		[10.4967, -61.5788],
-		[10.5989, -61.4324]
-		];
-	var map;
-
-	var infowindow = [];
-	var marker = [];
 
 	/*
     App.Location = Backbone.GoogleMaps.Location.extend({
@@ -174,24 +169,30 @@
         }; 
 
         // Instantiate map
-        this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+        map = new google.maps.Map($('#map_canvas')[0], mapOptions);
 		
-		var infowindow = new google.maps.InfoWindow({
-			content: 'RAWR'
-		});
+		var infowindow = new google.maps.InfoWindow();
 		
-		var marker = new google.maps.Marker({
-			position: mylatlng, 
-			map: this.map, 
-			title: 'Town'
-		});
+		var marker, i;
 		
-		google.maps.event.addListener(marker, 'click', function(){
-			infowindow.open(this.map, marker);
-		});
-    };
+		for (i = 0; i < holes.length; i++) {  
+		  marker = new google.maps.Marker({
+			position: new google.maps.LatLng(holes[i][1], holes[i][2]),
+			map: map
+		  });
+		 
+		google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+			return function() {
+			  infowindow.setContent(holes[i][0]);
+			  infowindow.open(map, marker);
+			}
+		})(marker, i));
+		
+			
+		};
+		
 	
-	
+	};
 
 
     /**
