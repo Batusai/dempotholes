@@ -1,21 +1,11 @@
-window.Wine = Backbone.Model.extend({
+window.Report = Backbone.Model.extend({
 
-    urlRoot: "api/wines",
+    urlRoot: "api/incidents",
 
     initialize: function () {
         this.validators = {};
 
-        this.validators.name = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a name"};
-        };
 
-        this.validators.grapes = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a grape variety"};
-        };
-
-        this.validators.country = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a country"};
-        };
     },
 
     validateItem: function (key) {
@@ -42,19 +32,18 @@ window.Wine = Backbone.Model.extend({
     defaults: {
         id: null,
         name: "",
-        grapes: "",
-        country: "USA",
-        region: "California",
-        year: "",
-        description: "",
+        addr: "",
+        direction: "",
+        type: "",
+        notes: "",
         picture: null
     }
 });
 
-window.WineCollection = Backbone.Collection.extend({
+window.ReportCollection = Backbone.Collection.extend({
 
-    model: Wine,
+    model: Report,
 
-    url: "api/wines"
+    url: "api/incidents"
 
 });

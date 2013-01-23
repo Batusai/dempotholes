@@ -13,14 +13,14 @@ var AppRouter = Backbone.Router.extend({
         $('.header').html(this.headerView.el);
     },
 
-    home: function (id) {
+    home: function () {
         if (!this.homeView) {
             this.homeView = new HomeView();
         }
         $('#content').html(this.homeView.el);
     },
 
-    report: function (id) {
+    report: function () {
         if (!this.reportView) {
             this.reportView = new MRView();
         }

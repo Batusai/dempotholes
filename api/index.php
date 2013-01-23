@@ -43,7 +43,7 @@ function getIncident($id) {
 }
 
 function saveInci() {
-	error_log('saveInci\n', 3, '/var/tmp/php.log');
+	// error_log('saveInci\n', 3, '/var/tmp/php.log');
 	$request = Slim::getInstance()->request();
 	$incident    = json_decode($request->getBody());
 	$sql     = "INSERT INTO incident (name, addr, direction, type, notes, picture) VALUES (:name, :addr, :direction, :type, :notes, :picture)";
@@ -121,7 +121,7 @@ function findByName($query) {
 function getConnection() {
 	$dbhost ="127.0.0.1";
 	$dbuser ="root";
-	$dbpass ="";
+	$dbpass ="root";
 	$dbname ="reports";
 	$dbh    = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
